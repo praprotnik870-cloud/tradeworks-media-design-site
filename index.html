@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/logo.png" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover"
+    />
+    <title>TradeWorks Media &amp; Design | Ads, Leads &amp; Booked Appointments</title>
+    <meta
+      name="description"
+      content="TradeWorks Media & Design builds high-converting websites and runs Meta ad campaigns that generate qualified leads and booked appointments for service businesses in St. Louis and beyond."
+    />
+    <meta name="theme-color" content="#020617" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="TradeWorks Media & Design" />
+    <meta property="og:description" content="We run the ads. We generate the leads. We book the appointments. You close the deals." />
+    <meta property="og:image" content="/logo.png" />
+    <meta property="og:type" content="website" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'system-ui', 'sans-serif'],
+            },
+            colors: {
+              brand: {
+                blue: '#2563eb',
+                bluelight: '#3b82f6',
+                orange: '#f97316',
+                orangedark: '#ea580c',
+                green: '#22c55e',
+              },
+            },
+            keyframes: {
+              float: {
+                '0%, 100%': { transform: 'translateY(0) scale(1)' },
+                '50%': { transform: 'translateY(-18px) scale(1.04)' },
+              },
+              fadeup: {
+                from: { opacity: '0', transform: 'translateY(16px)' },
+                to: { opacity: '1', transform: 'translateY(0)' },
+              },
+            },
+            animation: {
+              float: 'float 7s ease-in-out infinite',
+              'float-slow': 'float 10s ease-in-out infinite',
+              fadeup: 'fadeup 0.6s ease-out forwards',
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+
+    <!-- ElevenLabs AI assistant -->
+    <elevenlabs-convai agent-id="agent_0901kd8m4df6enmtm1ekptv5wfgn"></elevenlabs-convai>
+    <script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></script>
+  </body>
+</html>
