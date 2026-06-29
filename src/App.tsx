@@ -2,6 +2,7 @@ import { useState, useCallback, useEffect } from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
+import BackBar from './components/BackBar';
 import Home from './pages/Home';
 import About from './pages/About';
 import Services from './pages/Services';
@@ -10,11 +11,18 @@ import Contact from './pages/Contact';
 import type { PageView } from './types';
 
 export default function App() {
-  const [view, setView] = useState<PageView>('home');
+  // In-app navigation history so "Back" returns to the exact previous page.
+  const [history, setHistory] = useState<PageView[]>(['home']);
+  const view = history[history.length - 1];
+  const canGoBack = history.length > 1;
 
   const navigate = useCallback((to: PageView) => {
-    setView(to);
-    // Reset scroll on every page change so each "page" starts at the top.
+    setHistory((h) => (h[h.length - 1] === to ? h : [...h, to]));
+    requestAnimationFrame(() => window.scrollTo({ top: 0, behavior: 'auto' }));
+  }, []);
+
+  const goBack = useCallback(() => {
+    setHistory((h) => (h.length > 1 ? h.slice(0, -1) : h));
     requestAnimationFrame(() => window.scrollTo({ top: 0, behavior: 'auto' }));
   }, []);
 
@@ -50,6 +58,9 @@ export default function App() {
     <div className="flex min-h-screen flex-col bg-mesh">
       <Header currentView={view} navigate={navigate} />
       <main key={view} className="flex-grow animate-fadeup pt-[72px] md:pt-[84px]">
+        {view !== 'home' && (
+          <BackBar onBack={goBack} canGoBack={canGoBack} navigate={navigate} />
+        )}
         {renderPage()}
       </main>
       <Footer navigate={navigate} />
