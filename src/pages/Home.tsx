@@ -1,6 +1,7 @@
 import {
   ArrowRight,
-  Star,
+  MapPin,
+  MessageSquare,
   ShieldCheck,
   CheckCircle2,
   Sparkles,
@@ -93,23 +94,21 @@ export default function Home({ navigate }: HomeProps) {
             </button>
           </div>
 
-          {/* trust strip */}
+          {/* trust strip — honest, no fabricated metrics */}
           <div className="mt-9 flex flex-wrap items-center justify-center gap-x-5 gap-y-3 sm:mt-12 sm:gap-x-8">
-            <div className="flex items-center gap-2">
-              <div className="flex text-amber-400">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <Star key={i} size={16} fill="currentColor" strokeWidth={0} />
-                ))}
-              </div>
-              <span className="text-sm font-bold text-slate-300">5.0 Client Rating</span>
-            </div>
-            <span className="hidden h-4 w-px bg-white/15 sm:block" />
-            <span className="text-sm font-bold text-slate-400">
-              <span className="font-black text-white">100+</span> Campaigns Launched
+            <span className="flex items-center gap-2 text-sm font-bold text-slate-300">
+              <CheckCircle2 size={16} className="text-brand-green" />
+              Free, no-pressure quote
             </span>
             <span className="hidden h-4 w-px bg-white/15 sm:block" />
-            <span className="text-sm font-bold text-slate-400">
-              <span className="font-black text-white">St. Louis</span> Based &amp; Trusted
+            <span className="flex items-center gap-2 text-sm font-bold text-slate-300">
+              <MapPin size={16} className="text-brand-orange" />
+              Based in St. Louis, MO
+            </span>
+            <span className="hidden h-4 w-px bg-white/15 sm:block" />
+            <span className="flex items-center gap-2 text-sm font-bold text-slate-300">
+              <MessageSquare size={16} className="text-brand-bluelight" />
+              Straightforward, no jargon
             </span>
           </div>
         </div>

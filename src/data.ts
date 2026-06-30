@@ -231,11 +231,12 @@ export const TESTIMONIALS: Testimonial[] = [
   },
 ];
 
+// Honest "what we do" highlights — factual service pillars, no fabricated metrics.
 export const STATS = [
-  { value: '5.0', label: 'Client Rating' },
-  { value: '100+', label: 'Campaigns Launched' },
-  { value: '3x', label: 'Avg. Lead Increase' },
-  { value: '24/7', label: 'AI Support Ready' },
+  { value: 'Ads', label: 'Meta & Instagram' },
+  { value: 'Leads', label: 'Funnels & Follow-Up' },
+  { value: 'Sites', label: 'Custom-Built' },
+  { value: 'AI', label: 'Chat & Automation' },
 ];
 
 export const VALUES = [
