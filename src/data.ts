@@ -8,6 +8,10 @@ import {
   ShieldCheck,
   Rocket,
   TrendingUp,
+  Clock,
+  MessageSquare,
+  Handshake,
+  Users,
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import type { NavItem } from './types';
@@ -26,7 +30,7 @@ export const NAV_ITEMS: NavItem[] = [
   { label: 'Home', view: 'home' },
   { label: 'About', view: 'about' },
   { label: 'Services', view: 'services' },
-  { label: 'Reviews', view: 'reviews' },
+  { label: 'Why Us', view: 'reviews' },
   { label: 'Contact', view: 'contact' },
 ];
 
@@ -183,51 +187,56 @@ export const PROCESS: ProcessStep[] = [
   },
 ];
 
-export interface Testimonial {
-  name: string;
-  role: string;
-  content: string;
-  rating: number;
-  initials: string;
+// Genuine commitments — how we work, not claimed results. Honest for a new studio.
+export interface Commitment {
+  title: string;
+  description: string;
+  icon: LucideIcon;
   accent: 'blue' | 'orange' | 'green';
 }
 
-export const TESTIMONIALS: Testimonial[] = [
+export const COMMITMENTS: Commitment[] = [
   {
-    name: 'Michael Chen',
-    role: 'CEO, TechFlow',
-    content:
-      'TradeWorks completely transformed our online presence. The AI integration alone has saved us dozens of hours in customer support.',
-    rating: 5,
-    initials: 'MC',
+    title: 'Fast Replies',
+    description:
+      'We respond to every message within one business day — no black holes, no waiting around.',
+    icon: Clock,
     accent: 'blue',
   },
   {
-    name: 'Sarah Jenkins',
-    role: 'Owner, Artisan Bakery',
-    content:
-      'The design is breathtaking. I never thought my website could look this professional and perform this well on Google.',
-    rating: 5,
-    initials: 'SJ',
+    title: 'Plain English',
+    description:
+      "No buzzwords or runaround. We explain what we're doing and why, in language that actually makes sense.",
+    icon: MessageSquare,
     accent: 'orange',
   },
   {
-    name: 'Jacob Myers',
-    role: 'Director, Myers Construction',
-    content:
-      'Our leads tripled within the first month. The automation and design quality are leagues ahead of anything else we saw.',
-    rating: 5,
-    initials: 'JM',
+    title: 'The Right Metrics',
+    description:
+      'We focus on booked appointments and revenue — not likes, impressions, or vanity numbers.',
+    icon: Target,
     accent: 'green',
   },
   {
-    name: 'Mike Crews',
-    role: 'Founder, Crews Painting & Design',
-    content:
-      'The custom animations make our site stand out in a crowded market. TradeWorks delivered a premium product that actually converts.',
-    rating: 5,
-    initials: 'MC',
+    title: 'Full Transparency',
+    description:
+      "You'll always know what we're working on, what it costs, and how it's performing.",
+    icon: BarChart3,
     accent: 'blue',
+  },
+  {
+    title: 'Zero Pressure',
+    description:
+      "Your quote is free and our advice is honest. If we're not the right fit, we'll tell you.",
+    icon: Handshake,
+    accent: 'orange',
+  },
+  {
+    title: 'Direct Access',
+    description:
+      'You work directly with the people building your project — no junior hand-offs.',
+    icon: Users,
+    accent: 'green',
   },
 ];
 

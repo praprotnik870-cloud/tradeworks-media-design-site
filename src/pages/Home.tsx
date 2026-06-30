@@ -192,11 +192,10 @@ export default function Home({ navigate }: HomeProps) {
             </p>
             <div className="mx-auto h-1 w-24 rounded-full bg-gradient-to-r from-transparent via-brand-blue to-transparent" />
             <p>
-              "We've helped business owners go from chasing dead-end leads to{' '}
-              <span className="text-brand-green">
-                waking up to a calendar full of booked appointments.
-              </span>{' '}
-              We handle the tech and the traffic so you can focus on your craft."
+              "So we take it off your plate. We handle the ads, the funnels, and the follow-up — all
+              built to turn scattered effort into{' '}
+              <span className="text-brand-green">booked appointments</span> — so you can focus on the
+              work you do best."
             </p>
           </div>
         </div>

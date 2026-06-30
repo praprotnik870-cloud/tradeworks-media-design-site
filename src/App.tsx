@@ -6,7 +6,7 @@ import BackBar from './components/BackBar';
 import Home from './pages/Home';
 import About from './pages/About';
 import Services from './pages/Services';
-import Reviews from './pages/Reviews';
+import WhyUs from './pages/WhyUs';
 import Contact from './pages/Contact';
 import type { PageView } from './types';
 
@@ -32,7 +32,7 @@ export default function App() {
       home: 'TradeWorks Media & Design | Ads, Leads & Booked Appointments',
       about: 'About | TradeWorks Media & Design',
       services: 'Services | TradeWorks Media & Design',
-      reviews: 'Reviews | TradeWorks Media & Design',
+      reviews: 'Why Us | TradeWorks Media & Design',
       contact: 'Contact | TradeWorks Media & Design',
     };
     document.title = titles[view];
@@ -45,7 +45,7 @@ export default function App() {
       case 'services':
         return <Services navigate={navigate} />;
       case 'reviews':
-        return <Reviews navigate={navigate} />;
+        return <WhyUs navigate={navigate} />;
       case 'contact':
         return <Contact />;
       case 'home':
