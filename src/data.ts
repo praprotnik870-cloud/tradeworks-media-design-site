@@ -36,12 +36,18 @@ const EMAIL_BODY = [
   'Thanks,',
 ].join('\r\n');
 
+const MAILTO_HREF = `mailto:${EMAIL}?subject=${encodeURIComponent(EMAIL_SUBJECT)}&body=${encodeURIComponent(EMAIL_BODY)}`;
+const GMAIL_HREF = `https://mail.google.com/mail/?view=cm&fs=1&to=${EMAIL}&su=${encodeURIComponent(EMAIL_SUBJECT)}&body=${encodeURIComponent(EMAIL_BODY)}`;
+// Phones open their mail app via mailto. Desktops often have no mail app registered
+// (mailto silently does nothing), so open a pre-filled Gmail draft in a new tab instead.
+const IS_MOBILE = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
+
 export const CONTACT = {
   phone: '314-800-7106',
   phoneHref: 'tel:+13148007106',
   email: EMAIL,
-  // Opens a pre-filled draft in the visitor's email app.
-  emailHref: `mailto:${EMAIL}?subject=${encodeURIComponent(EMAIL_SUBJECT)}&body=${encodeURIComponent(EMAIL_BODY)}`,
+  emailHref: IS_MOBILE ? MAILTO_HREF : GMAIL_HREF,
+  emailNewTab: !IS_MOBILE,
   location: 'St. Louis, MO',
   // Formspree endpoint (existing TradeWorks form)
   formEndpoint: 'https://formspree.io/f/mjgkaokg',

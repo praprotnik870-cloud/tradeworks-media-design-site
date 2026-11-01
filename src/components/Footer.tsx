@@ -78,6 +78,8 @@ export default function Footer({ navigate }: FooterProps) {
               <li>
                 <a
                   href={CONTACT.emailHref}
+                  target={CONTACT.emailNewTab ? '_blank' : undefined}
+                  rel={CONTACT.emailNewTab ? 'noopener noreferrer' : undefined}
                   className="flex items-center gap-3 break-all text-sm font-medium text-fg-muted transition-colors hover:text-fg"
                 >
                   <Mail size={16} className="shrink-0 text-brand-cyan" />

@@ -37,9 +37,9 @@ export default function Contact() {
   };
 
   const contactCards = [
-    { icon: Phone, label: 'Call Us', value: CONTACT.phone, href: CONTACT.phoneHref },
-    { icon: Mail, label: 'Email Us', value: CONTACT.email, href: CONTACT.emailHref },
-    { icon: MapPin, label: 'Based In', value: CONTACT.location, href: undefined },
+    { icon: Phone, label: 'Call Us', value: CONTACT.phone, href: CONTACT.phoneHref, newTab: false },
+    { icon: Mail, label: 'Email Us', value: CONTACT.email, href: CONTACT.emailHref, newTab: CONTACT.emailNewTab },
+    { icon: MapPin, label: 'Based In', value: CONTACT.location, href: undefined, newTab: false },
   ];
 
   return (
@@ -78,7 +78,13 @@ export default function Contact() {
                   </div>
                 );
                 return c.href ? (
-                  <a key={c.label} href={c.href} className="block">
+                  <a
+                    key={c.label}
+                    href={c.href}
+                    target={c.newTab ? '_blank' : undefined}
+                    rel={c.newTab ? 'noopener noreferrer' : undefined}
+                    className="block"
+                  >
                     {inner}
                   </a>
                 ) : (
