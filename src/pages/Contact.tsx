@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Phone, Mail, MapPin, Send, CheckCircle2, Loader2 } from 'lucide-react';
+import { Phone, Mail, MapPin, Send, CheckCircle2, Loader2, ArrowUpRight } from 'lucide-react';
 import { CONTACT } from '../data';
 import { btnPrimary, btnSecondary, btnMd, btnLg } from '../ui';
 import PageHero from '../components/PageHero';
@@ -37,8 +37,8 @@ export default function Contact() {
   };
 
   const contactCards = [
-    { icon: Phone, label: 'Call', value: CONTACT.phone, href: CONTACT.phoneHref },
-    { icon: Mail, label: 'Email', value: CONTACT.email, href: CONTACT.emailHref },
+    { icon: Phone, label: 'Call Us', value: CONTACT.phone, href: CONTACT.phoneHref },
+    { icon: Mail, label: 'Email Us', value: CONTACT.email, href: CONTACT.emailHref },
     { icon: MapPin, label: 'Based In', value: CONTACT.location, href: undefined },
   ];
 
@@ -68,12 +68,13 @@ export default function Contact() {
                     className={`panel flex items-center gap-4 p-5 ${c.href ? 'panel-hover' : ''}`}
                   >
                     <IconTile icon={c.icon} size="sm" />
-                    <div className="min-w-0">
+                    <div className="min-w-0 flex-1">
                       <div className="text-[11px] font-semibold uppercase tracking-[0.2em] text-fg-subtle">
                         {c.label}
                       </div>
                       <div className="truncate text-base font-semibold text-fg">{c.value}</div>
                     </div>
+                    {c.href && <ArrowUpRight size={18} className="shrink-0 text-brand-cyan" />}
                   </div>
                 );
                 return c.href ? (

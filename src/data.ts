@@ -21,11 +21,27 @@ import {
 import type { LucideIcon } from 'lucide-react';
 import type { NavItem } from './types';
 
+const EMAIL = 'tradeworks.design@gmail.com';
+const EMAIL_SUBJECT = 'Website Inquiry';
+const EMAIL_BODY = [
+  'Hi TradeWorks,',
+  '',
+  "I'd like to learn more about your services.",
+  '',
+  'Name:',
+  'Business:',
+  'Phone:',
+  "What I'm looking for:",
+  '',
+  'Thanks,',
+].join('\r\n');
+
 export const CONTACT = {
   phone: '314-800-7106',
   phoneHref: 'tel:+13148007106',
-  email: 'tradeworks.design@gmail.com',
-  emailHref: 'mailto:tradeworks.design@gmail.com',
+  email: EMAIL,
+  // Opens a pre-filled draft in the visitor's email app.
+  emailHref: `mailto:${EMAIL}?subject=${encodeURIComponent(EMAIL_SUBJECT)}&body=${encodeURIComponent(EMAIL_BODY)}`,
   location: 'St. Louis, MO',
   // Formspree endpoint (existing TradeWorks form)
   formEndpoint: 'https://formspree.io/f/mjgkaokg',
