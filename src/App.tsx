@@ -8,6 +8,7 @@ import About from './pages/About';
 import Services from './pages/Services';
 import WhyUs from './pages/WhyUs';
 import Contact from './pages/Contact';
+import useReveal from './useReveal';
 import type { PageView } from './types';
 
 export default function App() {
@@ -29,7 +30,7 @@ export default function App() {
   // Keep the document title in sync with the active page.
   useEffect(() => {
     const titles: Record<PageView, string> = {
-      home: 'TradeWorks Media & Design | Ads, Leads & Booked Appointments',
+      home: 'TradeWorks Media & Design | Digital Marketing Agency, St. Louis',
       about: 'About | TradeWorks Media & Design',
       services: 'Services | TradeWorks Media & Design',
       reviews: 'Why Us | TradeWorks Media & Design',
@@ -37,6 +38,8 @@ export default function App() {
     };
     document.title = titles[view];
   }, [view]);
+
+  useReveal(view);
 
   const renderPage = () => {
     switch (view) {
@@ -55,7 +58,7 @@ export default function App() {
   };
 
   return (
-    <div className="flex min-h-screen flex-col bg-mesh">
+    <div className="flex min-h-screen flex-col bg-matte">
       <Header currentView={view} navigate={navigate} />
       <main key={view} className="flex-grow animate-fadeup pt-[72px] md:pt-[84px]">
         {view !== 'home' && (

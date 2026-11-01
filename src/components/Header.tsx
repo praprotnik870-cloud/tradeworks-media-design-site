@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Menu, X, Phone, ChevronRight } from 'lucide-react';
 import { NAV_ITEMS, CONTACT } from '../data';
+import { btnPrimary, btnSm, btnLg } from '../ui';
+import BrandMark from './BrandMark';
 import type { PageView } from '../types';
 
 interface HeaderProps {
@@ -36,62 +38,52 @@ export default function Header({ currentView, navigate }: HeaderProps) {
     <header
       className={`fixed inset-x-0 top-0 z-50 safe-x transition-colors duration-300 ${
         scrolled || open
-          ? 'bg-slate-950/90 backdrop-blur-xl border-b border-white/10'
-          : 'bg-slate-950/60 backdrop-blur-md border-b border-transparent'
+          ? 'border-b border-brand-silver/10 bg-ink/90 backdrop-blur-xl'
+          : 'border-b border-transparent bg-ink/50 backdrop-blur-md'
       }`}
     >
       <div className="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-4 sm:px-6 md:h-[84px]">
         {/* Logo */}
         <button
           onClick={() => go('home')}
-          className="flex items-center gap-3 rounded-xl outline-none transition-transform active:scale-95"
+          className="rounded-sm transition-opacity hover:opacity-90"
           aria-label="TradeWorks Media & Design — home"
         >
-          <img
-            src="/logo.png"
-            alt="TradeWorks Media & Design"
-            className="h-12 w-12 rounded-lg object-cover sm:h-14 sm:w-14"
-            width={56}
-            height={56}
-          />
-          <span className="flex flex-col leading-none">
-            <span className="text-lg font-black tracking-tight text-white sm:text-xl">
-              TradeWorks
-            </span>
-            <span className="mt-0.5 text-[9px] font-bold uppercase tracking-[0.28em] text-brand-green sm:text-[10px]">
-              Media &amp; Design
-            </span>
-          </span>
+          <BrandMark />
         </button>
 
         {/* Desktop nav */}
-        <nav className="hidden items-center gap-1 md:flex">
+        <nav className="hidden items-center gap-1 lg:flex">
           {NAV_ITEMS.map((item) => {
             const active = currentView === item.view;
             return (
               <button
                 key={item.view}
                 onClick={() => navigate(item.view)}
-                className={`rounded-full px-4 py-2 text-sm font-bold uppercase tracking-wide transition-colors ${
-                  active
-                    ? 'text-brand-bluelight'
-                    : 'text-slate-300 hover:text-white'
+                aria-current={active ? 'page' : undefined}
+                className={`relative whitespace-nowrap px-3.5 py-2 text-[13px] font-semibold uppercase tracking-[0.12em] transition-colors xl:px-4 ${
+                  active ? 'text-fg' : 'text-fg-muted hover:text-fg'
                 }`}
               >
                 {item.label}
+                <span
+                  className={`absolute bottom-0 left-3.5 right-3.5 h-[2px] bg-brand-cyan transition-opacity xl:left-4 xl:right-4 ${
+                    active ? 'opacity-100' : 'opacity-0'
+                  }`}
+                />
               </button>
             );
           })}
           <a
             href={CONTACT.phoneHref}
-            className="ml-2 flex items-center gap-2 rounded-full border border-white/10 px-4 py-2 text-sm font-bold text-white transition-colors hover:border-white/30"
+            className="ml-3 hidden items-center gap-2 whitespace-nowrap rounded-sm border border-brand-silver/15 px-4 py-2.5 text-[13px] font-semibold text-fg transition-colors hover:border-brand-cyan/50 xl:flex"
           >
-            <Phone size={15} />
+            <Phone size={15} className="text-brand-cyan" />
             {CONTACT.phone}
           </a>
           <button
             onClick={() => navigate('contact')}
-            className="ml-1 rounded-full bg-brand-orange px-5 py-2.5 text-sm font-black uppercase tracking-wide text-white shadow-lg shadow-orange-500/25 transition-all hover:bg-brand-orangedark active:scale-95"
+            className={`${btnPrimary} ${btnSm} ml-2 whitespace-nowrap uppercase tracking-[0.12em]`}
           >
             Free Quote
           </button>
@@ -100,11 +92,11 @@ export default function Header({ currentView, navigate }: HeaderProps) {
         {/* Mobile toggle */}
         <button
           onClick={() => setOpen((v) => !v)}
-          className="flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-white active:scale-90 md:hidden"
+          className="flex items-center gap-2 rounded-sm border border-brand-silver/15 bg-white/[0.03] px-3 py-2 text-fg transition-colors hover:border-brand-cyan/50 lg:hidden"
           aria-label={open ? 'Close menu' : 'Open menu'}
           aria-expanded={open}
         >
-          <span className="text-[11px] font-black uppercase tracking-widest">
+          <span className="text-[11px] font-semibold uppercase tracking-[0.2em]">
             {open ? 'Close' : 'Menu'}
           </span>
           {open ? <X size={20} /> : <Menu size={20} />}
@@ -113,8 +105,8 @@ export default function Header({ currentView, navigate }: HeaderProps) {
 
       {/* Mobile menu */}
       {open && (
-        <div className="md:hidden">
-          <div className="safe-bottom max-h-[calc(100vh-72px)] overflow-y-auto border-t border-white/10 bg-slate-950/98 px-4 pb-8 pt-4 backdrop-blur-xl">
+        <div className="lg:hidden">
+          <div className="safe-bottom h-[calc(100dvh-72px)] overflow-y-auto border-t border-brand-silver/10 bg-ink/[0.98] px-4 pb-8 pt-4 backdrop-blur-xl md:h-[calc(100dvh-84px)]">
             <nav className="flex flex-col gap-2">
               {NAV_ITEMS.map((item) => {
                 const active = currentView === item.view;
@@ -122,38 +114,39 @@ export default function Header({ currentView, navigate }: HeaderProps) {
                   <button
                     key={item.view}
                     onClick={() => go(item.view)}
-                    className={`flex items-center justify-between rounded-2xl border px-5 py-4 text-left transition-all active:scale-[0.98] ${
+                    aria-current={active ? 'page' : undefined}
+                    className={`flex items-center justify-between border px-5 py-4 text-left transition-colors ${
                       active
-                        ? 'border-brand-bluelight/50 bg-brand-blue/10 text-brand-bluelight'
-                        : 'border-white/10 bg-white/5 text-white'
+                        ? 'border-brand-cyan/40 border-l-2 border-l-brand-cyan bg-brand-cyan/[0.06] text-fg'
+                        : 'border-brand-silver/10 bg-white/[0.02] text-fg'
                     }`}
                   >
-                    <span className="text-base font-bold">{item.label}</span>
+                    <span className="text-base font-semibold">{item.label}</span>
                     <ChevronRight
                       size={18}
-                      className={active ? 'text-brand-bluelight' : 'text-slate-500'}
+                      className={active ? 'text-brand-cyan' : 'text-fg-subtle'}
                     />
                   </button>
                 );
               })}
             </nav>
 
-            <div className="mt-4 flex flex-col gap-3 border-t border-white/10 pt-4">
+            <div className="mt-4 flex flex-col gap-3 border-t border-brand-silver/10 pt-4">
               <a
                 href={CONTACT.phoneHref}
-                className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/5 px-5 py-4 text-white active:scale-[0.98]"
+                className="flex items-center justify-between border border-brand-silver/10 bg-white/[0.02] px-5 py-4 text-fg"
               >
                 <span className="flex items-center gap-3">
-                  <span className="rounded-lg bg-brand-orange p-2 text-white">
+                  <span className="border border-brand-cyan/30 bg-brand-cyan/[0.08] p-2 text-brand-cyan">
                     <Phone size={16} />
                   </span>
-                  <span className="text-base font-bold">{CONTACT.phone}</span>
+                  <span className="text-base font-semibold">{CONTACT.phone}</span>
                 </span>
-                <ChevronRight size={16} className="text-slate-500" />
+                <ChevronRight size={16} className="text-fg-subtle" />
               </a>
               <button
                 onClick={() => go('contact')}
-                className="w-full rounded-2xl bg-brand-orange py-4 text-base font-black uppercase tracking-widest text-white shadow-lg shadow-orange-500/25 active:scale-95"
+                className={`${btnPrimary} ${btnLg} w-full uppercase tracking-[0.14em]`}
               >
                 Get a Free Quote
               </button>
